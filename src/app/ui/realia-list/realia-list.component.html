@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="title">
+      <h2>{{title}}</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="type==='person' && entries?.length">
+      <app-person-list [entries]="entries"></app-person-list>
+    </ng-container>
+    <ng-container *ngIf="type==='place' && entries?.length">
+      <app-place-list [entries]="entries"></app-place-list>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,108 @@
+<div>
+  <form [formGroup]="entriesForm">
+    <div formArrayName="entriesCtl">
+      <table>
+        <tbody>
+          <tr *ngFor="let e of entriesCtl.controls; let i = index">
+            <ng-container [formGroupName]="i">
+              <td>
+                <button
+                  type="button"
+                  mat-icon-button
+                  color="primary"
+                  matTooltip="Essential information about {{
+                    entries[i].label
+                  }}"
+                  (click)="selectEntry(i)"
+                >
+                  <mat-icon>info</mat-icon>
+                </button>
+                <a
+                  type="button"
+                  mat-icon-button
+                  [href]="entries[i].uri"
+                  target="_blank"
+                  matTooltip="Open DBPedia page"
+                >
+                  <mat-icon>import_contacts</mat-icon>
+                </a>
+              </td>
+              <td>{{ entries[i].label }}</td>
+              <td>
+                <!-- <mat-checkbox
+                  formControlName="checked"
+                  matTooltip="Toggle this place in map"
+                ></mat-checkbox> -->
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+      <mat-progress-bar mode="indeterminate" *ngIf="busy"></mat-progress-bar>
+    </div>
+  </form>
+
+  <mat-expansion-panel *ngIf="selectedEntry" [(expanded)]="infoExpanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>{{ selectedEntry?.label }}</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-tab-group>
+      <mat-tab label="Info">
+        <form [formGroup]="abstractForm">
+          <div class="container">
+            <!-- depiction -->
+            <div class="floated" *ngIf="info?.depiction">
+              <img
+                class="depiction"
+                alt="selectedEntry?.label"
+                [src]="info.depiction.value"
+              />
+            </div>
+            <!-- label(s) -->
+            <ul *ngIf="info?.labels?.length">
+              <li *ngFor="let l of info.labels">
+                {{ l.value }} ({{ l["xml:lang"] }})
+              </li>
+            </ul>
+            <!-- abstract -->
+            <div>
+              <mat-form-field class="short-field">
+                <mat-select
+                  placeholder="abstract language"
+                  [formControl]="language"
+                >
+                  <mat-option *ngFor="let l of languages" [value]="l">{{
+                    l
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <ng-container>{{ selectedAbstract }}</ng-container>
+          </div>
+          <!-- wiki link -->
+          <div *ngIf="info?.topic">
+            <a [href]="info?.topic.value" target="_blank">Open Wikipedia</a>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Map">
+        <google-map width="100%">
+          <map-marker
+            *ngFor="let marker of markers"
+            [position]="marker.position"
+            [label]="marker.label"
+            [title]="marker.title"
+            [options]="marker.options"
+          >
+          </map-marker>
+        </google-map>
+      </mat-tab>
+      <mat-tab label="Query">
+        <app-query [query]="lastQuery"></app-query>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-expansion-panel>
+</div>

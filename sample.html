@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Realia Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="node_modules/@angular/material/prebuilt-themes/indigo-pink.css">
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="./elements/realia-list.js"></script>
+
+<body>
+  <h2>Realia Lab Controls Demo</h2>
+  <div>
+    <h3>Persons</h3>
+    <app-realia-list
+      type="person"
+      json-list='[{ "uri": "http://dbpedia.org/resource/Marco_Polo", "label": "Marco Polo" },{ "uri": "http://dbpedia.org/resource/Kublai_Khan", "label": "Kublai Khan" }]'></app-realia-list>
+    <h3>Places</h3>
+    <app-realia-list
+      type="place"
+      json-list='[{ "uri": "http://dbpedia.org/resource/Venice", "label": "Venice" },{ "uri": "http://dbpedia.org/resource/Shangdu", "label": "Shangdu" }]'></app-realia-list>
+  </div>
+</body>
+
+</html>
