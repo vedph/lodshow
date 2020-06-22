@@ -136,23 +136,25 @@ export class PlaceListComponent implements OnInit {
             +this.info.longm.value,
             this.info.longew.value
           );
-          this.markers = [this._marker as MapMarker];
+          if (this._marker) {
+            this.markers = [this._marker as MapMarker];
 
-          // TODO: add other markers
-          // const bounds = new google.maps.LatLngBounds();
-          // for (const marker of this.markers) {
-          //   bounds.extend(marker.getPosition());
-          // }
-          // this.map.fitBounds(bounds);
+            // TODO: add other markers
+            // const bounds = new google.maps.LatLngBounds();
+            // for (const marker of this.markers) {
+            //   bounds.extend(marker.getPosition());
+            // }
+            // this.map.fitBounds(bounds);
+          }
+
+          setTimeout(() => {
+            this.map.zoom = 12;
+            this.map.center = {
+              lat: this._marker.position.lat,
+              lng: this._marker.position.lng,
+            };
+          }, 1000);
         }
-
-        setTimeout(() => {
-          this.map.zoom = 12;
-          this.map.center = {
-            lat: this._marker.position.lat,
-            lng: this._marker.position.lng,
-          };
-        }, 1000);
       },
       (error) => {
         this.busy = false;

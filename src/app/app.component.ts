@@ -24,12 +24,16 @@ export class AppComponent {
 
     const places: RealiaListEntry[] = [];
     places.push({
-      uri: 'http://dbpedia.org/resource/Venice',
-      label: 'Venice',
+      uri: 'http://dbpedia.org/resource/Kingdom_of_Armenia_(antiquity)',
+      label: 'Great Armenia',
     });
     places.push({
       uri: 'http://dbpedia.org/resource/Shangdu',
       label: 'Shangdu',
+    });
+    places.push({
+      uri: 'http://dbpedia.org/resource/Venice',
+      label: 'Venice',
     });
     this.placeJson = JSON.stringify(places);
   }
