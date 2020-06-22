@@ -44,8 +44,7 @@ SELECT DISTINCT
   ?topic ?depiction ?abstract
   ?latd ?latm ?latns ?longd ?longm ?longew
 WHERE {
-  dbr:${id} a dbo:Place;
-            rdfs:label ?label.
+  dbr:${id} rdfs:label ?label.
   OPTIONAL {
   dbr:${id}
     foaf:isPrimaryTopicOf ?topic;

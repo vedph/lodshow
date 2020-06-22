@@ -64,6 +64,7 @@ export class PersonListComponent implements OnInit {
         this.busy = false;
         this.info = i;
         this.languages = this._realiaService.getLanguages(i.abstracts);
+        this.selectedAbstract = null;
         this.infoExpanded = true;
         if (this.languages.length) {
           if (this.languages.find((l) => l === 'en')) {

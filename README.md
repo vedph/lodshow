@@ -64,6 +64,15 @@ SELECT distinct dbr:Marco_Polo as ?person ?name ?birth_date ?birth_place ?birth_
 LIMIT 10
 ```
 
+Sample explorative query:
+
+```ttl
+SELECT ?p ?o WHERE
+{
+  <http://dbpedia.org/resource/Marco_Polo> ?p ?o.
+}
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -85,6 +85,8 @@ export class PlaceListComponent implements OnInit {
 
   private updateEntriesForm() {
     this.entriesForm.reset();
+    this.selectedAbstract = null;
+    this.languages = [];
     if (!this._entries) {
       return;
     }
@@ -113,6 +115,7 @@ export class PlaceListComponent implements OnInit {
         this.busy = false;
         this.info = i;
         this.languages = this._realiaService.getLanguages(i.abstracts);
+        this.selectedAbstract = null;
         this.infoExpanded = true;
         if (this.languages.length) {
           if (this.languages.find((l) => l === 'en')) {
